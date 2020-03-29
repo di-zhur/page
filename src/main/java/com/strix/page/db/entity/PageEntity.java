@@ -13,7 +13,7 @@ public class PageEntity {
     private String url;
     private UUID userId;
     private String option;
-    private Date dateCreated;
+    private Date dateCreated = new Date();
     private Collection<LinkEntity> linksById;
     private Collection<TopicEntity> topicsById;
 
@@ -28,7 +28,7 @@ public class PageEntity {
     }
 
     @Basic
-    @Column(name = "url")
+    @Column(name = "url", columnDefinition = "TEXT")
     public String getUrl() {
         return url;
     }
@@ -48,7 +48,7 @@ public class PageEntity {
     }
 
     @Basic
-    @Column(name = "option")
+    @Column(name = "option", columnDefinition = "TEXT")
     public String getOption() {
         return option;
     }

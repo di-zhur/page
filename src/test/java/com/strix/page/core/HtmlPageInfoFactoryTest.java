@@ -25,7 +25,7 @@ public class HtmlPageInfoFactoryTest {
     @Test
     public void testGetTopics() {
         Map<String, List<String>> topics = htmlPageInfoFactory.getTopics("https://yandex.ru/");
-        assertNotNull( topics);
+        assertNotNull(topics);
     }
 
 }

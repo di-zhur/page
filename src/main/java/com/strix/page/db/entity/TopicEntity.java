@@ -33,7 +33,7 @@ public class TopicEntity {
     }
 
     @Basic
-    @Column(name = "value")
+    @Column(name = "value", columnDefinition = "TEXT")
     public String getValue() {
         return value;
     }

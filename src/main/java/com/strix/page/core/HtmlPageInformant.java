@@ -16,7 +16,7 @@ public class HtmlPageInformant {
     }
 
     public static List<PageLink> getLinks(Document document) {
-       return document.select("a[href]")
+       return document.select(TAG.A + "[" + ATTR.HREF + "]")
                .stream()
                .map(link -> new PageLink(link.attr(ATTR.HREF), link.text()))
                .collect(Collectors.toList());
@@ -42,6 +42,8 @@ public class HtmlPageInformant {
     }
 
     private static class TAG {
+
+        private static final String A = "a";
 
         private static final String H1 = "h1";
 
