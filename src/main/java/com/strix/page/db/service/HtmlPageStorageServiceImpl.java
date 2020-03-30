@@ -7,17 +7,17 @@ import com.strix.page.db.entity.LinkEntity;
 import com.strix.page.db.entity.PageEntity;
 import com.strix.page.db.repository.LinkRepository;
 import com.strix.page.db.repository.PageRepository;
+import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
-import org.springframework.util.concurrent.ListenableFuture;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
-import java.util.concurrent.CompletableFuture;
 
 @Service
+@Log4j2
 public class HtmlPageStorageServiceImpl implements HtmlPageStorageService {
 
     private final PageRepository pageRepository;
@@ -43,7 +43,7 @@ public class HtmlPageStorageServiceImpl implements HtmlPageStorageService {
             try {
                 linkEntity.setValue(objectMapper.writeValueAsString(it));
             } catch (JsonProcessingException e) {
-                e.printStackTrace();
+                log.warn(e);
             }
             linkEntities.add(linkEntity);
         });
@@ -56,4 +56,5 @@ public class HtmlPageStorageServiceImpl implements HtmlPageStorageService {
         pageEntity.setUrl(url);
         return pageRepository.save(pageEntity);
     }
+
 }
