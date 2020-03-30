@@ -1,4 +1,4 @@
-package com.strix.page.service;
+package com.strix.page.bl;
 
 import com.strix.page.core.HtmlPageInfoFactory;
 import com.strix.page.core.dto.PageLink;
@@ -9,13 +9,13 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class HtmlPageInfoBlServiceImpl implements HtmlPageInfoBlService {
+public class HtmlPageInfoServiceImpl implements HtmlPageInfoService {
 
     private final HtmlPageInfoFactory htmlPageInfoFactory;
     private final HtmlPageStorageService htmlPageStorageService;
 
     @Autowired
-    public HtmlPageInfoBlServiceImpl(HtmlPageInfoFactory htmlPageInfoFactory, HtmlPageStorageService htmlPageStorageService) {
+    public HtmlPageInfoServiceImpl(HtmlPageInfoFactory htmlPageInfoFactory, HtmlPageStorageService htmlPageStorageService) {
         this.htmlPageInfoFactory = htmlPageInfoFactory;
         this.htmlPageStorageService = htmlPageStorageService;
     }

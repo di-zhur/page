@@ -1,8 +1,7 @@
 package com.strix.page.controller;
 
-import com.strix.page.core.HtmlPageInfoFactory;
 import com.strix.page.core.dto.PageLink;
-import com.strix.page.service.HtmlPageInfoBlService;
+import com.strix.page.bl.HtmlPageInfoService;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -18,10 +17,10 @@ import java.util.List;
 @Log4j2
 public class PageInfoController {
 
-    private final HtmlPageInfoBlService htmlPageInfoFactory;
+    private final HtmlPageInfoService htmlPageInfoFactory;
 
     @Autowired
-    public PageInfoController(HtmlPageInfoBlService htmlPageInfoFactory) {
+    public PageInfoController(HtmlPageInfoService htmlPageInfoFactory) {
         this.htmlPageInfoFactory = htmlPageInfoFactory;
     }
 

@@ -1,10 +1,10 @@
-package com.strix.page.service;
+package com.strix.page.bl;
 
 import com.strix.page.core.dto.PageLink;
 
 import java.util.List;
 
-public interface HtmlPageInfoBlService {
+public interface HtmlPageInfoService {
 
     List<PageLink> getMainLinks(String url);
 

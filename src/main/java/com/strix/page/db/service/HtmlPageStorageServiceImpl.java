@@ -11,6 +11,7 @@ import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,6 +33,7 @@ public class HtmlPageStorageServiceImpl implements HtmlPageStorageService {
     }
 
     @Async("threadPoolTaskExecutor")
+    @Transactional
     @Override
     public void saveLinks(String url, List<PageLink> pageLinks) {
         final PageEntity pageEntity = savePage(url);
