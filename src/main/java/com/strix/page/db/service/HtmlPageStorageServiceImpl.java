@@ -3,10 +3,13 @@ package com.strix.page.db.service;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.strix.page.core.dto.PageLink;
+import com.strix.page.core.dto.TopicInfo;
 import com.strix.page.db.entity.LinkEntity;
 import com.strix.page.db.entity.PageEntity;
+import com.strix.page.db.entity.TopicEntity;
 import com.strix.page.db.repository.LinkRepository;
 import com.strix.page.db.repository.PageRepository;
+import com.strix.page.db.repository.TopicRepository;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Async;
@@ -15,6 +18,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 @Service
@@ -23,12 +27,14 @@ public class HtmlPageStorageServiceImpl implements HtmlPageStorageService {
 
     private final PageRepository pageRepository;
     private final LinkRepository linkRepository;
+    private final TopicRepository topicRepository;
     private final ObjectMapper objectMapper;
 
     @Autowired
-    public HtmlPageStorageServiceImpl(PageRepository pageRepository, LinkRepository linkRepository, ObjectMapper objectMapper) {
+    public HtmlPageStorageServiceImpl(PageRepository pageRepository, LinkRepository linkRepository, TopicRepository topicRepository, ObjectMapper objectMapper) {
         this.pageRepository = pageRepository;
         this.linkRepository = linkRepository;
+        this.topicRepository = topicRepository;
         this.objectMapper = objectMapper;
     }
 
@@ -50,6 +56,28 @@ public class HtmlPageStorageServiceImpl implements HtmlPageStorageService {
             linkEntities.add(linkEntity);
         });
         linkRepository.saveAll(linkEntities);
+    }
+
+    @Async("threadPoolTaskExecutor")
+    @Transactional
+    @Override
+    public void saveTopics(String url, Map<String, List<String>> topics) {
+        final PageEntity pageEntity = savePage(url);
+        final List<TopicEntity> topicEntities = new ArrayList<>();
+        topics.forEach((key, value) -> {
+            value.forEach(it -> {
+                final TopicEntity topicEntity = new TopicEntity();
+                topicEntity.setId(UUID.randomUUID());
+                topicEntity.setPageId(pageEntity.getId());
+                try {
+                    topicEntity.setValue(objectMapper.writeValueAsString(new TopicInfo(key, it)));
+                } catch (JsonProcessingException e) {
+                    e.printStackTrace();
+                }
+                topicEntities.add(topicEntity);
+            });
+        });
+        topicRepository.saveAll(topicEntities);
     }
 
     private PageEntity savePage(String url) {

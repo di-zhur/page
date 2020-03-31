@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class HtmlPageInfoServiceImpl implements HtmlPageInfoService {
@@ -27,6 +28,11 @@ public class HtmlPageInfoServiceImpl implements HtmlPageInfoService {
         return pageLinks;
     }
 
-
+    @Override
+    public Map<String, List<String>> getTopics(String url) {
+        Map<String, List<String>> topics = htmlPageInfoFactory.getTopics(url);
+        htmlPageStorageService.saveTopics(url, topics);
+        return topics;
+    }
 
 }

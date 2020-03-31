@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("api/v1/page/info")
@@ -29,6 +30,13 @@ public class PageInfoController {
         log.info("getLinks {}", url);
         List<PageLink> links = htmlPageInfoFactory.getMainLinks(url);
         return ResponseEntity.ok(links);
+    }
+
+    @PostMapping("/getTopics")
+    public ResponseEntity<?> getTopics(@RequestBody String url) {
+        log.info("getTopics {}", url);
+        Map<String, List<String>> topics = htmlPageInfoFactory.getTopics(url);
+        return ResponseEntity.ok(topics);
     }
 
 }
