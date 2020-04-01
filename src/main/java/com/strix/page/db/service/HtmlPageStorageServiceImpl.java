@@ -64,13 +64,13 @@ public class HtmlPageStorageServiceImpl implements HtmlPageStorageService {
     public void saveTopics(String url, Map<String, List<String>> topics) {
         final PageEntity pageEntity = savePage(url);
         final List<TopicEntity> topicEntities = new ArrayList<>();
-        topics.forEach((key, value) -> {
-            value.forEach(it -> {
+        topics.forEach((key, values) -> {
+            values.forEach(value -> {
                 final TopicEntity topicEntity = new TopicEntity();
                 topicEntity.setId(UUID.randomUUID());
                 topicEntity.setPageId(pageEntity.getId());
                 try {
-                    topicEntity.setValue(objectMapper.writeValueAsString(new TopicInfo(key, it)));
+                    topicEntity.setValue(objectMapper.writeValueAsString(new TopicInfo(key, value)));
                 } catch (JsonProcessingException e) {
                     e.printStackTrace();
                 }
