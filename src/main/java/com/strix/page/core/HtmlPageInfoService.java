@@ -1,4 +1,4 @@
-package com.strix.page.bl;
+package com.strix.page.core;
 
 import com.strix.page.core.dto.PageLink;
 

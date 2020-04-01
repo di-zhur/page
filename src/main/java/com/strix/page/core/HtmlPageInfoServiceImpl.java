@@ -1,6 +1,5 @@
-package com.strix.page.bl;
+package com.strix.page.core;
 
-import com.strix.page.core.HtmlPageInfoFactory;
 import com.strix.page.core.dto.PageLink;
 import com.strix.page.db.service.HtmlPageStorageService;
 import org.springframework.beans.factory.annotation.Autowired;
