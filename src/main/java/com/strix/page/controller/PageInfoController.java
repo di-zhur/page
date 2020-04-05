@@ -25,16 +25,16 @@ public class PageInfoController {
         this.htmlPageInfoFactory = htmlPageInfoFactory;
     }
 
-    @PostMapping("/getLinks")
-    public ResponseEntity<List<PageLink>> getLinks(@RequestBody String url) {
-        log.info("getLinks {}", url);
+    @PostMapping("/extractLinks")
+    public ResponseEntity<List<PageLink>> extractLinks(@RequestBody String url) {
+        log.info("extractLinks {}", url);
         List<PageLink> links = htmlPageInfoFactory.getMainLinks(url);
         return ResponseEntity.ok(links);
     }
 
-    @PostMapping("/getTopics")
-    public ResponseEntity<Map<String, List<String>>> getTopics(@RequestBody String url) {
-        log.info("getTopics {}", url);
+    @PostMapping("/extractTopics")
+    public ResponseEntity<Map<String, List<String>>> extractTopics(@RequestBody String url) {
+        log.info("extractTopics {}", url);
         Map<String, List<String>> topics = htmlPageInfoFactory.getTopics(url);
         return ResponseEntity.ok(topics);
     }
