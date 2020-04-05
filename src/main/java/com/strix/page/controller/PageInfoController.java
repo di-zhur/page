@@ -26,14 +26,14 @@ public class PageInfoController {
     }
 
     @PostMapping("/getLinks")
-    public ResponseEntity<?> getLinks(@RequestBody String url) {
+    public ResponseEntity<List<PageLink>> getLinks(@RequestBody String url) {
         log.info("getLinks {}", url);
         List<PageLink> links = htmlPageInfoFactory.getMainLinks(url);
         return ResponseEntity.ok(links);
     }
 
     @PostMapping("/getTopics")
-    public ResponseEntity<?> getTopics(@RequestBody String url) {
+    public ResponseEntity<Map<String, List<String>>> getTopics(@RequestBody String url) {
         log.info("getTopics {}", url);
         Map<String, List<String>> topics = htmlPageInfoFactory.getTopics(url);
         return ResponseEntity.ok(topics);
