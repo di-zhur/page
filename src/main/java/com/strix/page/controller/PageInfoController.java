@@ -1,5 +1,6 @@
 package com.strix.page.controller;
 
+import com.strix.page.controller.dto.PageInfoInput;
 import com.strix.page.core.dto.PageLink;
 import com.strix.page.core.HtmlPageInfoService;
 import lombok.extern.log4j.Log4j2;
@@ -26,16 +27,16 @@ public class PageInfoController {
     }
 
     @PostMapping("/extractLinks")
-    public ResponseEntity<List<PageLink>> extractLinks(@RequestBody String url) {
-        log.info("extractLinks {}", url);
-        List<PageLink> links = htmlPageInfoFactory.getMainLinks(url);
+    public ResponseEntity<List<PageLink>> extractLinks(@RequestBody PageInfoInput pageInfoInput) {
+        log.info("extractLinks {}", pageInfoInput.getUrl());
+        List<PageLink> links = htmlPageInfoFactory.getMainLinks(pageInfoInput.getUrl());
         return ResponseEntity.ok(links);
     }
 
     @PostMapping("/extractTopics")
-    public ResponseEntity<Map<String, List<String>>> extractTopics(@RequestBody String url) {
-        log.info("extractTopics {}", url);
-        Map<String, List<String>> topics = htmlPageInfoFactory.getTopics(url);
+    public ResponseEntity<Map<String, List<String>>> extractTopics(@RequestBody PageInfoInput pageInfoInput) {
+        log.info("extractTopics {}", pageInfoInput.getUrl());
+        Map<String, List<String>> topics = htmlPageInfoFactory.getTopics(pageInfoInput.getUrl());
         return ResponseEntity.ok(topics);
     }
 
