@@ -3,6 +3,8 @@ package com.strix.page.core;
 import com.strix.page.core.dto.PageLink;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
+import org.springframework.util.CollectionUtils;
+import org.springframework.util.StringUtils;
 
 import java.util.List;
 import java.util.Map;
@@ -28,9 +30,11 @@ public class HtmlPageInformant {
                     List<String> texts = document.getElementsByTag(tag)
                             .stream()
                             .map(Element::text)
+                            .filter(text -> !StringUtils.isEmpty(text))
                             .collect(Collectors.toList());
                     return Map.entry(tag, texts);
                 })
+                .filter(it -> !CollectionUtils.isEmpty(it.getValue()))
                 .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry:: getValue));
     }
 
