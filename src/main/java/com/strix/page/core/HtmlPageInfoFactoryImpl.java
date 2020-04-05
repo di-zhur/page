@@ -3,6 +3,9 @@ package com.strix.page.core;
 import com.strix.page.core.dto.PageLink;
 import org.jsoup.nodes.Document;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.retry.RetryCallback;
+import org.springframework.retry.RetryContext;
+import org.springframework.retry.support.RetryTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
@@ -13,10 +16,12 @@ import java.util.Map;
 public class HtmlPageInfoFactoryImpl implements HtmlPageInfoFactory {
 
     private final RestTemplate restTemplate;
+    private final RetryTemplate retryTemplate;
 
     @Autowired
-    public HtmlPageInfoFactoryImpl(RestTemplate restTemplate) {
+    public HtmlPageInfoFactoryImpl(RestTemplate restTemplate, RetryTemplate retryTemplate) {
         this.restTemplate = restTemplate;
+        this.retryTemplate = retryTemplate;
     }
 
     @Override
@@ -32,8 +37,10 @@ public class HtmlPageInfoFactoryImpl implements HtmlPageInfoFactory {
     }
 
     private Document getHtmlDocumentByUrl(String url) {
-        final String html = restTemplate.getForObject(url, String.class);
-        return HtmlPageParser.parse(html);
+        return retryTemplate.execute(context -> {
+            final String html = restTemplate.getForObject(url, String.class);
+            return HtmlPageParser.parse(html);
+        });
     }
 
 }
