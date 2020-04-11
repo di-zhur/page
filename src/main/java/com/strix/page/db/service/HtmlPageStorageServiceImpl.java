@@ -72,7 +72,7 @@ public class HtmlPageStorageServiceImpl implements HtmlPageStorageService {
                 try {
                     topicEntity.setValue(objectMapper.writeValueAsString(new Topic(key, value)));
                 } catch (JsonProcessingException e) {
-                    e.printStackTrace();
+                    log.warn(e);
                 }
                 topicEntities.add(topicEntity);
             });
