@@ -2,10 +2,12 @@ package com.strix.page.core.dto;
 
 import lombok.Value;
 
+import java.util.List;
+
 @Value
-public class TopicInfo {
+public class Topics {
 
     private String tag;
-    private String value;
+    private List<String> values;
 
 }

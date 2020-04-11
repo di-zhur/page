@@ -3,8 +3,6 @@ package com.strix.page.core;
 import com.strix.page.core.dto.PageLink;
 import org.jsoup.nodes.Document;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.retry.RetryCallback;
-import org.springframework.retry.RetryContext;
 import org.springframework.retry.support.RetryTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;

@@ -3,7 +3,7 @@ package com.strix.page.db.service;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.strix.page.core.dto.PageLink;
-import com.strix.page.core.dto.TopicInfo;
+import com.strix.page.core.dto.Topic;
 import com.strix.page.db.entity.LinkEntity;
 import com.strix.page.db.entity.PageEntity;
 import com.strix.page.db.entity.TopicEntity;
@@ -70,7 +70,7 @@ public class HtmlPageStorageServiceImpl implements HtmlPageStorageService {
                 topicEntity.setId(UUID.randomUUID());
                 topicEntity.setPageId(pageEntity.getId());
                 try {
-                    topicEntity.setValue(objectMapper.writeValueAsString(new TopicInfo(key, value)));
+                    topicEntity.setValue(objectMapper.writeValueAsString(new Topic(key, value)));
                 } catch (JsonProcessingException e) {
                     e.printStackTrace();
                 }

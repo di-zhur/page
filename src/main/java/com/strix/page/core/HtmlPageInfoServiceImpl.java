@@ -1,12 +1,14 @@
 package com.strix.page.core;
 
 import com.strix.page.core.dto.PageLink;
+import com.strix.page.core.dto.Topics;
 import com.strix.page.db.service.HtmlPageStorageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 @Service
 public class HtmlPageInfoServiceImpl implements HtmlPageInfoService {
@@ -28,10 +30,12 @@ public class HtmlPageInfoServiceImpl implements HtmlPageInfoService {
     }
 
     @Override
-    public Map<String, List<String>> getTopics(String url) {
+    public List<Topics> getTopics(String url) {
         Map<String, List<String>> topics = htmlPageInfoFactory.getTopics(url);
         htmlPageStorageService.saveTopics(url, topics);
-        return topics;
+        return topics.entrySet().stream()
+                .map(it -> new Topics(it.getKey(), it.getValue()))
+                .collect(Collectors.toList());
     }
 
 }
