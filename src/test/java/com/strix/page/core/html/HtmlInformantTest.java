@@ -1,4 +1,4 @@
-package com.strix.page.core;
+package com.strix.page.core.html;
 
 import com.strix.page.core.dto.PageLink;
 import org.junit.jupiter.api.Test;
@@ -11,20 +11,22 @@ import java.util.Map;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 @SpringBootTest
-public class HtmlHtmlInformantTest {
+public class HtmlInformantTest {
 
     @Autowired
     private HtmlInformant htmlInformant;
 
     @Test
     public void testGetMainLinks() {
-        List<PageLink> pageLinks = htmlInformant.getMainLinks("https://www.youtube.com/watch?v=q8KkjaW8PDc");
+        List<PageLink> pageLinks = htmlInformant.receive("https://www.youtube.com/watch?v=q8KkjaW8PDc",
+                document -> new HtmlLinksInformation(document).receive());
         assertNotNull(pageLinks);
     }
 
     @Test
     public void testGetTopics() {
-        Map<String, List<String>> topics = htmlInformant.getTopics("https://yandex.ru/");
+        Map<String, List<String>> topics = htmlInformant.receive("https://yandex.ru/",
+                document -> new HtmlTopicsInformation(document).receive());
         assertNotNull(topics);
     }
 
