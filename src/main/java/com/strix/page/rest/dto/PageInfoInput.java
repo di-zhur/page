@@ -1,4 +1,4 @@
-package com.strix.page.controller.dto;
+package com.strix.page.rest.dto;
 
 import java.util.Objects;
 

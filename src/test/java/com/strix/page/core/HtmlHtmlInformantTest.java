@@ -11,20 +11,20 @@ import java.util.Map;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 @SpringBootTest
-public class HtmlPageInfoFactoryTest {
+public class HtmlHtmlInformantTest {
 
     @Autowired
-    private HtmlPageInfoFactory htmlPageInfoFactory;
+    private HtmlInformant htmlInformant;
 
     @Test
     public void testGetMainLinks() {
-        List<PageLink> pageLinks = htmlPageInfoFactory.getMainLinks("https://www.youtube.com/watch?v=q8KkjaW8PDc");
+        List<PageLink> pageLinks = htmlInformant.getMainLinks("https://www.youtube.com/watch?v=q8KkjaW8PDc");
         assertNotNull(pageLinks);
     }
 
     @Test
     public void testGetTopics() {
-        Map<String, List<String>> topics = htmlPageInfoFactory.getTopics("https://yandex.ru/");
+        Map<String, List<String>> topics = htmlInformant.getTopics("https://yandex.ru/");
         assertNotNull(topics);
     }
 

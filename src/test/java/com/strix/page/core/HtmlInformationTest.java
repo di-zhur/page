@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-public class HtmlPageInformantTest {
+public class HtmlInformationTest {
 
     @Test
     public void testGetLinks() {

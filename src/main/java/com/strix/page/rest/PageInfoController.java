@@ -1,7 +1,7 @@
-package com.strix.page.controller;
+package com.strix.page.rest;
 
-import com.strix.page.controller.dto.PageInfoInput;
-import com.strix.page.core.HtmlPageInfoService;
+import com.strix.page.rest.dto.PageInfoInput;
+import com.strix.page.core.HtmlInfoService;
 import com.strix.page.core.dto.PageLink;
 import com.strix.page.core.dto.Topics;
 import lombok.extern.log4j.Log4j2;
@@ -19,10 +19,10 @@ import java.util.List;
 @Log4j2
 public class PageInfoController {
 
-    private final HtmlPageInfoService htmlPageInfoFactory;
+    private final HtmlInfoService htmlPageInfoFactory;
 
     @Autowired
-    public PageInfoController(HtmlPageInfoService htmlPageInfoFactory) {
+    public PageInfoController(HtmlInfoService htmlPageInfoFactory) {
         this.htmlPageInfoFactory = htmlPageInfoFactory;
     }
 

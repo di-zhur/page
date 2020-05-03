@@ -1,4 +1,4 @@
-package com.strix.page.db.service;
+package com.strix.page.db;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -23,7 +23,7 @@ import java.util.UUID;
 
 @Service
 @Log4j2
-public class HtmlPageStorageServiceImpl implements HtmlPageStorageService {
+public class HtmlPageStorageImpl implements HtmlPageStorage {
 
     private final PageRepository pageRepository;
     private final LinkRepository linkRepository;
@@ -31,7 +31,7 @@ public class HtmlPageStorageServiceImpl implements HtmlPageStorageService {
     private final ObjectMapper objectMapper;
 
     @Autowired
-    public HtmlPageStorageServiceImpl(PageRepository pageRepository, LinkRepository linkRepository, TopicRepository topicRepository, ObjectMapper objectMapper) {
+    public HtmlPageStorageImpl(PageRepository pageRepository, LinkRepository linkRepository, TopicRepository topicRepository, ObjectMapper objectMapper) {
         this.pageRepository = pageRepository;
         this.linkRepository = linkRepository;
         this.topicRepository = topicRepository;

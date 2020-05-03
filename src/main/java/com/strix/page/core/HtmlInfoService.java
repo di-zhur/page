@@ -5,7 +5,7 @@ import com.strix.page.core.dto.Topics;
 
 import java.util.List;
 
-public interface HtmlPageInfoService {
+public interface HtmlInfoService {
 
     List<PageLink> getMainLinks(String url);
 

@@ -1,11 +1,11 @@
-package com.strix.page.db.service;
+package com.strix.page.db;
 
 import com.strix.page.core.dto.PageLink;
 
 import java.util.List;
 import java.util.Map;
 
-public interface HtmlPageStorageService {
+public interface HtmlPageStorage {
 
     void saveLinks(String url, List<PageLink> pageLinks);
 
