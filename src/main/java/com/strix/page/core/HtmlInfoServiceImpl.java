@@ -3,7 +3,7 @@ package com.strix.page.core;
 import com.strix.page.core.html.HtmlLinksInformation;
 import com.strix.page.core.html.HtmlTopicsInformation;
 import com.strix.page.core.html.HtmlInformant;
-import com.strix.page.core.dto.PageLink;
+import com.strix.page.core.dto.Link;
 import com.strix.page.core.dto.Topics;
 import com.strix.page.db.HtmlPageStorage;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,12 +26,12 @@ public class HtmlInfoServiceImpl implements HtmlInfoService {
     }
 
     @Override
-    public List<PageLink> getMainLinks(String url) {
-        List<PageLink> pageLinks = htmlInformant.receive(url,
+    public List<Link> getMainLinks(String url) {
+        List<Link> links = htmlInformant.receive(url,
                 document -> new HtmlLinksInformation(document).receive());
         // TODO: 03.05.2020 saving in other service
-        htmlPageStorage.saveLinks(url, pageLinks);
-        return pageLinks;
+        htmlPageStorage.saveLinks(url, links);
+        return links;
     }
 
     @Override

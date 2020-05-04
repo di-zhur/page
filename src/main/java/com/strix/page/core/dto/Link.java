@@ -3,7 +3,7 @@ package com.strix.page.core.dto;
 import lombok.Value;
 
 @Value
-public class PageLink {
+public class Link {
 
     private String url;
     private String text;

@@ -2,7 +2,7 @@ package com.strix.page.db;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.strix.page.core.dto.PageLink;
+import com.strix.page.core.dto.Link;
 import com.strix.page.core.dto.Topic;
 import com.strix.page.db.entity.LinkEntity;
 import com.strix.page.db.entity.PageEntity;
@@ -41,10 +41,10 @@ public class HtmlPageStorageImpl implements HtmlPageStorage {
     @Async("threadPoolTaskExecutor")
     @Transactional
     @Override
-    public void saveLinks(String url, List<PageLink> pageLinks) {
+    public void saveLinks(String url, List<Link> links) {
         final PageEntity pageEntity = savePage(url);
         final List<LinkEntity> linkEntities = new ArrayList<>();
-        pageLinks.forEach(it -> {
+        links.forEach(it -> {
             final LinkEntity linkEntity = new LinkEntity();
             linkEntity.setId(UUID.randomUUID());
             linkEntity.setPageId(pageEntity.getId());

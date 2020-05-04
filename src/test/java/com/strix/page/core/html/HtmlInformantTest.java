@@ -1,6 +1,6 @@
 package com.strix.page.core.html;
 
-import com.strix.page.core.dto.PageLink;
+import com.strix.page.core.dto.Link;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -18,9 +18,9 @@ public class HtmlInformantTest {
 
     @Test
     public void testGetMainLinks() {
-        List<PageLink> pageLinks = htmlInformant.receive("https://www.youtube.com/watch?v=q8KkjaW8PDc",
+        List<Link> links = htmlInformant.receive("https://www.youtube.com/watch?v=q8KkjaW8PDc",
                 document -> new HtmlLinksInformation(document).receive());
-        assertNotNull(pageLinks);
+        assertNotNull(links);
     }
 
     @Test
