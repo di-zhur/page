@@ -57,7 +57,7 @@ public class TopicEntity {
         return Objects.hash(id, pageId, value);
     }
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "page_id", referencedColumnName = "id", insertable = false, updatable = false)
     public PageEntity getPageByPageId() {
         return pageByPageId;

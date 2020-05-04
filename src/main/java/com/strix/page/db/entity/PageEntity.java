@@ -85,7 +85,7 @@ public class PageEntity {
         return Objects.hash(id, url, userId, option, dateCreated);
     }
 
-    @OneToMany(mappedBy = "pageByPageId")
+    @OneToMany(mappedBy = "pageByPageId", fetch = FetchType.LAZY)
     public Collection<LinkEntity> getLinksById() {
         return linksById;
     }
@@ -94,7 +94,7 @@ public class PageEntity {
         this.linksById = linksById;
     }
 
-    @OneToMany(mappedBy = "pageByPageId")
+    @OneToMany(mappedBy = "pageByPageId", fetch = FetchType.LAZY)
     public Collection<TopicEntity> getTopicsById() {
         return topicsById;
     }
