@@ -31,7 +31,7 @@ public class HtmlTopicsInformation extends HtmlInformation<Map<String, List<Stri
                     return Map.entry(tag, texts);
                 })
                 .filter(it -> !CollectionUtils.isEmpty(it.getValue()))
-                .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry:: getValue));
+                .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
     }
 
 }
